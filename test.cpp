@@ -53,27 +53,13 @@ public:
         }
     }
 
-    void del()
+    void del(node *before_del)
     {
-        node *before_del;
-        int d;
-        cout << "date Number:\n";
-        cin >> d;
-        while (true)
-        {
-            if (before_del == NULL)
-            {
-                cout << "delete\n";
-                break;
-            }
-            else
-            {
-                node *temp;
-                temp = before_del->next;
-                before_del->next = temp->next;
-                delete temp;
-            }
-        }
+
+        node *temp;
+        temp = before_del->next;
+        before_del->next = temp->next;
+        delete temp;
     }
     void after(node *a, int value)
     {
@@ -142,7 +128,25 @@ int main()
             a.front();
             break;
         case 3:
-            a.del();
+                        int Ncount;
+            cout << "how next?\n";
+            cin >> Ncount;
+            switch (Ncount)
+            {
+            case 1:
+                a.del(a.gethead()->next);
+                break;
+            case 2:
+                a.del(a.gethead()->next->next);
+                break;
+            case 3:
+                a.del(a.gethead()->next->next->next);
+                break;
+
+            default:
+                break;
+            }
+            break;
             break;
         case 4:
             linkedList::display(a.gethead());
