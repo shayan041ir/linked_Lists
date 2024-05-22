@@ -107,9 +107,60 @@ int menu()
 {
     int n;
     system("cls");
-    cout << "1)addnode\n2)addfront\n3)deletenode\n4)displaynode\n5)exit\n";
+    cout << "1)addNode\n2)addFront\n3)DeleteNode\n4)addAfter\n5)DisplayNode\n6)exit\n--------------------------\nplease select\n";
     cin >> n;
     return n;
+}
+void how(linkedList a)
+{
+    int index;
+    cout << "Enter the index of the node you want to delete: ";
+    cin >> index;
+    // Find the node at the specified index
+    node *temp = a.gethead();
+    for (int i = 1; i < index; i++)
+    {
+        if (temp == NULL)
+        {
+            cout << "Invalid index" << endl;
+            break;
+        }
+        temp = temp->next;
+    }
+
+    if (temp != NULL && temp->next != NULL)
+    {
+        a.del(temp);
+    }
+    else
+    {
+        cout << "Invalid index" << endl;
+    }
+}
+void how2(linkedList a)
+{
+    int index,value;
+    cout << "Enter the index of the node you want to add and enter value: ";
+    cin >> index>>value;
+    node *temp = a.gethead();
+    for (int i = 1; i < index; i++)
+    {
+        if (temp == NULL)
+        {
+            cout << "Invalid index" << endl;
+            break;
+        }
+        temp = temp->next;
+    }
+
+    if (temp != NULL && temp->next != NULL)
+    {
+        a.after(temp,value);
+    }
+    else
+    {
+        cout << "Invalid index" << endl;
+    }
 }
 int main()
 {
@@ -127,32 +178,17 @@ int main()
         case 2:
             a.front();
             break;
-        case 3:
-                        int Ncount;
-            cout << "how next?\n";
-            cin >> Ncount;
-            switch (Ncount)
-            {
-            case 1:
-                a.del(a.gethead()->next);
-                break;
-            case 2:
-                a.del(a.gethead()->next->next);
-                break;
-            case 3:
-                a.del(a.gethead()->next->next->next);
-                break;
-
-            default:
-                break;
-            }
-            break;
+        case 3: 
+            how(a);
             break;
         case 4:
+            how2(a);
+            break;
+        case 5:
             linkedList::display(a.gethead());
             system("pause");
             break;
-        case 5:
+        case 6:
             exit(0);
 
         default:
